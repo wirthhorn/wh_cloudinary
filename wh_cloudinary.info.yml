@@ -1,0 +1,7 @@
+name: 'WH cloudinary'
+type: module
+description: 'Adds cloudinary settings to book-cover-field and to book-import'
+core: 8.x
+package: 'Wirth und Horn'
+dependencies:
+  - cloudinary

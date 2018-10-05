@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Contains wh_cloudinary.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function wh_cloudinary_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the wh_cloudinary module.
+    case 'help.page.wh_cloudinary':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds cloudinary settings to book-cover-field and to book-import') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function wh_cloudinary_change_import_file_dir_alter(&$data) {
+  $cloudinaryDir = \Drupal::service('wh_cloudinary.default')->getCloudinaryDir();
+  $data ='cloudinary://'.$cloudinaryDir.'/cover';
+}
+
+function wh_cloudinary_install(){
+  //change book-cover-field settings to cloudinary
+  $config = \Drupal::configFactory()->getEditable('field.storage.node.field_book_cover');
+  $config->set('settings.uri_scheme', 'cloudinary');
+  $config->save(TRUE);
+
+  $cloudinaryDir = \Drupal::service('wh_cloudinary.default')->getCloudinaryDir();
+  $config = \Drupal::configFactory()->getEditable('field.field.node.book.field_book_cover');
+  $config->set('settings.file_directory', $cloudinaryDir.'/cover');
+  $config->save(TRUE);
+}

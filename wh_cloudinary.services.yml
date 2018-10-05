@@ -1,0 +1,4 @@
+services:
+  wh_cloudinary.default:
+    class: Drupal\wh_cloudinary\DefaultService
+    arguments: []
