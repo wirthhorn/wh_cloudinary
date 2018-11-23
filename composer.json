@@ -1,0 +1,14 @@
+{
+    "name": "wirthhorn/wh_cloudinary",
+    "description": "Adds cloudinary settings to book-cover-field and to book-import",
+    "type": "drupal-module",
+    "homepage": "https://www.wirth-horn.de",
+    "authors": [
+        {
+        "name": "Bettina Händel",
+        "email": "haendel@wirth-horn.de"
+        }
+    ],
+    "license": "GPL-2.0+"
+}
+  
